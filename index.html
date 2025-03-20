@@ -3,9 +3,656 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My GitHub Page</title>
+    <title>Thomas Evans - Portfolio</title>
+    <style>
+        /* Apple-inspired design system */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f7;
+            color: #1d1d1f;
+            line-height: 1.5;
+            font-size: 17px;
+        }
+
+        /* Particles background */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            opacity: 0.6;
+        }
+
+        /* Container system */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Navigation */
+        header {
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.7);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 1px 8px rgba(0, 0, 0, 0.06);
+        }
+
+        nav {
+            padding: 16px 0;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin: 0 18px;
+        }
+
+        nav ul li a {
+            color: #1d1d1f;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: 20px;
+            transition: all 0.2s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        /* Hero section */
+        #home {
+            height: 85vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        #home h1 {
+            font-size: 56px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            margin-bottom: 12px;
+        }
+
+        #expertise {
+            font-size: 24px;
+            color: #6e6e73;
+            height: 28px;
+        }
+
+        /* Section styling */
+        section {
+            padding: 80px 0;
+        }
+
+        section h2 {
+            font-size: 40px;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        /* Institution card styling */
+        .institution {
+            display: flex;
+            background-color: white;
+            border-radius: 18px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+            align-items: flex-start;
+        }
+
+        .institution img {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            margin-right: 30px;
+            border-radius: 12px;
+        }
+
+        .institution h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .institution p {
+            margin-bottom: 15px;
+            color: #424245;
+        }
+
+        .institution ul {
+            margin-left: 20px;
+            color: #424245;
+        }
+
+        .institution ul li {
+            margin-bottom: 8px;
+        }
+
+        /* Photo galleries */
+        .university-photos, .career-photos {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+        }
+
+        .university-photos img, .career-photos img {
+            width: 48%;
+            border-radius: 12px;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.1);
+            object-fit: cover;
+            height: 300px;
+        }
+
+        /* Projects section */
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background-color: white;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        .project-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.05);
+        }
+
+        .project-text {
+            padding: 24px;
+        }
+
+        .project-text h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .project-text p {
+            color: #6e6e73;
+            font-size: 16px;
+        }
+
+        /* Contact section */
+        #contact {
+            text-align: center;
+            padding-bottom: 100px;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .institution {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .institution img {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+
+            .university-photos, .career-photos {
+                flex-direction: column;
+            }
+
+            .university-photos img, .career-photos img {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+            #home h1 {
+                font-size: 42px;
+            }
+
+            #expertise {
+                font-size: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>Hello, GitHub Pages!</h1>
+<div id="particles-js"></div>
+<header>
+    <div class="container">
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#career">Career</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <section id="home">
+        <div class="container">
+            <h1>Thomas Evans</h1>
+            <p id="expertise"><span id="typing"></span></p>
+        </div>
+    </section>
+
+    <section id="education">
+        <div class="container">
+            <h2>Education</h2>
+
+            <div class="institution">
+                <img src="images/chartered-institute-logo.png" alt="The Chartered Governance Institute UK & Ireland logo">
+                <div>
+                    <h3>The Chartered Governance Institute UK & Ireland</h3>
+                    <p><strong>Foundation Examination, Finance, General</strong> | Sep 2023 – Jun 2024 | Grade: Pass</p>
+                    <p>Completed the Foundation Level Examinations with a first-time pass. Introduced to the business environment.</p>
+                    <ul>
+                        <li>Introducing the business environment</li>
+                        <li>Introduction to law</li>
+                        <li>Principles of company compliance and administration</li>
+                        <li>Introduction to finance and accounting</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="institution">
+                <img src="images/royal-holloway-logo.png" alt="Royal Holloway, University of London logo">
+                <div>
+                    <h3>Royal Holloway, University of London</h3>
+                    <p><strong>History BA</strong> | 2020 – 2023 | Grade: Upper 2:1</p>
+                    <ul>
+                        <li>Boxing Society: President (2nd year), Treasurer (3rd year)</li>
+                        <li>ENACTUS: Organisation Member & Volunteer (End Poverty Project)</li>
+                        <li>Circl: Coaching & Leadership Programme graduate</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="university-photos">
+                <img src="images/royal-holloway-photo1.png" alt="Royal Holloway document">
+                <img src="images/royal-holloway-photo2.png" alt="Night cityscape near Royal Holloway">
+            </div>
+        </div>
+    </section>
+
+    <section id="career">
+        <div class="container">
+            <h2>Career</h2>
+
+            <div class="institution">
+                <img src="images/darktrace-logo.png" alt="Darktrace company logo">
+                <div>
+                    <h3>Darktrace</h3>
+                    <p><strong>GRC Analyst (Internal Cybersecurity)</strong> | Sep 2024 – Present</p>
+                    <p>London, United Kingdom (Hybrid)</p>
+                    <ul>
+                        <li>Lead and assist in external audits ensuring compliance with ISO 27001 and ISO 27018</li>
+                        <li>Own and manage key ISMS controls ensuring effective implementation and continuous improvement</li>
+                        <li>Conduct information security assessments for suppliers and partners ensuring risk mitigation</li>
+                        <li>Respond to information security incidents, write incident reports, and assess regulatory reporting needs</li>
+                        <li>Analysis of complex datasets to identify information security risks and implement necessary controls</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="institution">
+                <img src="images/lewis-golden-logo.png" alt="Lewis Golden LLP logo">
+                <div>
+                    <h3>Lewis Golden LLP</h3>
+                    <p><strong>ACG Trainee (Financial Services)</strong> | Aug 2023 – Aug 2024</p>
+                    <p>Marylebone, London, United Kingdom (On-site)</p>
+                    <ul>
+                        <li>Helped manage 400+ entities, led client dividend payments & legal changes through Companies House</li>
+                        <li>Developed custom VBA regulatory compliance tracking solutions, administered EMI & CSOP schemes</li>
+                        <li>Presented to Partners and colleagues on ECCT act regulations, enhancing client-facing experience</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="institution">
+                <img src="images/sapio-research-logo.png" alt="Sapio Research logo">
+                <div>
+                    <h3>Sapio Research</h3>
+                    <p><strong>Summer Intern (Research Analyst)</strong> | Aug 2022 – Sep 2022</p>
+                    <p>London, United Kingdom (On-site)</p>
+                    <ul>
+                        <li>Conducted market research and data analysis</li>
+                        <li>Participated in client presentations and report creation</li>
+                        <li>Assisted in research methodology development and implementation</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="career-photos">
+                <img src="images/darktrace-office.png" alt="Darktrace office space">
+                <img src="images/lewis-golden-office.png" alt="Lewis Golden office environment">
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <h2>Projects</h2>
+            <div class="projects-container">
+                <a href="crypto-trading-bot.html" target="_blank" class="project-card">
+                    <div class="project-image"><img src="images/tradingbotheader.png" alt="Cryptocurrency Trading Bot"></div>
+                    <div class="project-text">
+                        <h3>Cryptocurrency Trading Bot</h3>
+                        <p>Automating the discovery and classification of winning cryptocurrency projects.</p>
+                    </div>
+                </a>
+                <a href="#" class="project-card">
+                    <div class="project-image"><img src="images/placeholder.png" alt="Project Two"></div>
+                    <div class="project-text">
+                        <h3>Project Two</h3>
+                        <p>A brief description of Project Two.</p>
+                    </div>
+                </a>
+                <a href="#" class="project-card">
+                    <div class="project-image"><img src="images/placeholder2.png" alt="Project Three"></div>
+                    <div class="project-text">
+                        <h3>Project Three</h3>
+                        <p>A brief description of Project Three.</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2>Contact</h2>
+            <!-- Add contact details here -->
+            <p style="text-align: center; max-width: 600px; margin: 0 auto; color: #6e6e73;">
+                Feel free to reach out for collaboration opportunities or to discuss my work.
+            </p>
+            <!-- You could add contact form, email, LinkedIn, etc. here -->
+        </div>
+    </section>
+</main>
+
+<!-- Include script.js for the typing effect -->
+<script src="script.js"></script>
+<!--Particle effect -->
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script>
+    particlesJS('particles-js', {
+        "particles": {
+            "number": {
+                "value": 40,
+                "density": {
+                    "enable": true,
+                    "value_area": 800
+                }
+            },
+            "color": {
+                "value": "#858585"
+            },
+            "shape": {
+                "type": "circle",
+                "stroke": {
+                    "width": 0,
+                    "color": "#000000"
+                }
+            },
+            "opacity": {
+                "value": 0.3,
+                "random": false,
+                "anim": {
+                    "enable": false,
+                    "speed": 1,
+                    "opacity_min": 0.1,
+                    "sync": false
+                }
+            },
+            "size": {
+                "value": 3,
+                "random": true,
+                "anim": {
+                    "enable": false,
+                    "speed": 40,
+                    "size_min": 0.1,
+                    "sync": false
+                }
+            },
+            "line_linked": {
+                "enable": true,
+                "distance": 150,
+                "color": "#424245",
+                "opacity": 0.3,
+                "width": 1
+            },
+            "move": {
+                "enable": true,
+                "speed": 3,
+                "direction": "none",
+                "random": false,
+                "straight": false,
+                "out_mode": "out",
+                "bounce": false,
+                "attract": {
+                    "enable": false,
+                    "rotateX": 600,
+                    "rotateY": 1200
+                }
+            }
+        },
+        "interactivity": {
+            "detect_on": "canvas",
+            "events": {
+                "onhover": {
+                    "enable": true,
+                    "mode": "repulse"
+                },
+                "onclick": {
+                    "enable": true,
+                    "mode": "push"
+                },
+                "resize": true
+            },
+            "modes": {
+                "grab": {
+                    "distance": 400,
+                    "line_linked": {
+                        "opacity": 1
+                    }
+                },
+                "bubble": {
+                    "distance": 400,
+                    "size": 40,
+                    "duration": 2,
+                    "opacity": 8,
+                    "speed": 3
+                },
+                "repulse": {
+                    "distance": 200,
+                    "duration": 0.4
+                },
+                "push": {
+                    "particles_nb": 4
+                },
+                "remove": {
+                    "particles_nb": 2
+                }
+            }
+        },
+        "retina_detect": true
+    });
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('nav a').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            const targetId = this.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
+
+            window.scrollTo({
+                top: targetSection.offsetTop - 70,
+                behavior: 'smooth'
+            });
+        });
+    });
+
+    // Intersection Observer for fade-in effects
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('fade-in');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    // Apply fade-in to all institution cards and project cards
+    document.querySelectorAll('.institution, .project-card').forEach(element => {
+        element.style.opacity = '0';
+        element.style.transform = 'translateY(30px)';
+        element.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+        observer.observe(element);
+    });
+
+    // CSS class for fade-in effect
+    document.head.insertAdjacentHTML('beforeend', `
+        <style>
+            .fade-in {
+                opacity: 1 !important;
+                transform: translateY(0) !important;
+            }
+
+            /* Add subtle hover effect to institution cards */
+            .institution {
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+
+            .institution:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            }
+
+            /* Active navigation link indicator */
+            nav ul li a.active {
+                background-color: rgba(0, 0, 0, 0.05);
+                font-weight: 600;
+            }
+        </style>
+    `);
+
+    // Add active class to current section in navigation
+    window.addEventListener('scroll', () => {
+        let current = '';
+
+        document.querySelectorAll('section').forEach(section => {
+            const sectionTop = section.offsetTop - 100;
+            const sectionHeight = section.clientHeight;
+
+            if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        document.querySelectorAll('nav ul li a').forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${current}`) {
+                link.classList.add('active');
+            }
+        });
+    });
+
+    // Simple typing effect for expertise text if script.js is not loaded
+    if (typeof window.initTypewriter !== 'function') {
+        const expertiseTexts = [
+            'Cybersecurity',
+            'Financial Markets',
+            'Technology'
+        ];
+
+        let currentTextIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let typingDelay = 100;
+        let erasingDelay = 50;
+        let newTextDelay = 2000;
+
+        function typeWriter() {
+            const typingElement = document.getElementById('typing');
+            const currentText = expertiseTexts[currentTextIndex];
+
+            if (isDeleting) {
+                typingElement.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+                typingDelay = erasingDelay;
+            } else {
+                typingElement.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+                typingDelay = 100;
+            }
+
+            if (!isDeleting && charIndex === currentText.length) {
+                isDeleting = true;
+                typingDelay = newTextDelay;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                currentTextIndex = (currentTextIndex + 1) % expertiseTexts.length;
+            }
+
+            setTimeout(typeWriter, typingDelay);
+        }
+
+        window.addEventListener('load', typeWriter);
+    }
+</script>
 </body>
 </html>
